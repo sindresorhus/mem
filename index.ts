@@ -3,8 +3,6 @@ import mapAgeCleaner from 'map-age-cleaner';
 
 type AnyFunction = (...arguments_: any) => any;
 
-const decoratorInstanceMap = new WeakMap();
-
 const cacheStore = new WeakMap<AnyFunction, CacheStorage<any, any>>();
 
 interface CacheStorageContent<ValueType> {
@@ -169,6 +167,8 @@ export function memDecorator<
 >(
 	options: Options<FunctionToMemoize, CacheKeyType> = {},
 ) {
+	const decoratorInstanceMap = new WeakMap();
+
 	return (
 		target: any,
 		propertyKey: string,
